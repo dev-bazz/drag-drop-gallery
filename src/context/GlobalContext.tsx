@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import { GlobalContextType } from "./context";
 import {
 	DndProvider,
@@ -23,12 +23,14 @@ export const HTML5toTouch = {
 	],
 };
 
+export const useGlobalContext = () => useContext(AppContext);
+
 export function GlobalContext({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const gold = "";
+	const gold = "007";
 	return (
 		<DndProvider options={HTML5toTouch}>
 			<AppContext.Provider
