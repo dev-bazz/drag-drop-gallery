@@ -14,6 +14,12 @@ dependencies:
   react-dnd-html5-backend:
     specifier: ^16.0.1
     version: 16.0.1
+  react-dnd-multi-backend:
+    specifier: ^8.0.2
+    version: 8.0.2(dnd-core@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react@18.2.0)
+  react-dnd-touch-backend:
+    specifier: ^16.0.1
+    version: 16.0.1
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -965,6 +971,14 @@ packages:
       redux: 4.2.1
     dev: false
 
+  /dnd-multi-backend@8.0.2(dnd-core@16.0.1):
+    resolution: {integrity: sha512-xkCRMMGPmti2zDZijmFN7pgbw+ews/plQ87H8Zug6gTmqBi9tjiIzbaRu3B6cExfki2pbOMXomF+EQeOnd8Z5Q==}
+    peerDependencies:
+      dnd-core: ^16.0.1
+    dependencies:
+      dnd-core: 16.0.1
+    dev: false
+
   /doctrine@3.0.0:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
@@ -1544,6 +1558,39 @@ packages:
   /react-dnd-html5-backend@16.0.1:
     resolution: {integrity: sha512-Wu3dw5aDJmOGw8WjH1I1/yTH+vlXEL4vmjk5p+MHxP8HuHJS1lAGeIdG/hze1AvNeXWo/JgULV87LyQOr+r5jw==}
     dependencies:
+      dnd-core: 16.0.1
+    dev: false
+
+  /react-dnd-multi-backend@8.0.2(dnd-core@16.0.1)(react-dnd@16.0.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-wETyP2OC8nT6YHK2gWeFWa5f4JR9/rkD5udIGtWvs1gZ9pzwVWRCwqwOf6T5BxKLYDZo80U4srLCZd7VU70+Vw==}
+    peerDependencies:
+      dnd-core: ^16.0.1
+      react: ^16.14.0 || ^17.0.2 || ^18.0.0
+      react-dnd: ^16.0.1
+      react-dom: ^16.14.0 || ^17.0.2 || ^18.0.0
+    dependencies:
+      dnd-core: 16.0.1
+      dnd-multi-backend: 8.0.2(dnd-core@16.0.1)
+      react: 18.2.0
+      react-dnd: 16.0.1(@types/react@18.2.22)(react@18.2.0)
+      react-dnd-preview: 8.0.1(react-dnd@16.0.1)(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-dnd-preview@8.0.1(react-dnd@16.0.1)(react@18.2.0):
+    resolution: {integrity: sha512-CsQwvWXLXGN9DoRzHC79DbCF42AXJdoUDMxnIF7TvA/xE6Hm+cVl6kPQIYz1UL755/JNSD2/WHuILuU40k29rw==}
+    peerDependencies:
+      react: ^16.14.0 || ^17.0.2 || ^18.0.0
+      react-dnd: ^16.0.1
+    dependencies:
+      react: 18.2.0
+      react-dnd: 16.0.1(@types/react@18.2.22)(react@18.2.0)
+    dev: false
+
+  /react-dnd-touch-backend@16.0.1:
+    resolution: {integrity: sha512-NonoCABzzjyWGZuDxSG77dbgMZ2Wad7eQiCd/ECtsR2/NBLTjGksPUx9UPezZ1nQ/L7iD130Tz3RUshL/ClKLA==}
+    dependencies:
+      '@react-dnd/invariant': 4.0.2
       dnd-core: 16.0.1
     dev: false
 
