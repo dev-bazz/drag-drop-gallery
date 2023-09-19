@@ -1,36 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { useGlobalContext } from "./context";
+import { useGlobalContext } from "../../context";
 
-function App() {
+export function App() {
 	const [count, setCount] = useState(0);
 	const { gold } = useGlobalContext();
-
-	console.log(gold);
+	console.log("Global Context: ", gold);
 
 	return (
 		<>
 			<div>
 				<a
 					href="https://vitejs.dev"
-					target="_blank">
-					<img
-						src={viteLogo}
-						className="logo"
-						alt="Vite logo"
-					/>
-				</a>
+					target="_blank"></a>
 				<a
 					href="https://react.dev"
-					target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
+					target="_blank"></a>
 			</div>
 			<h1>Vite + React</h1>
 			<div className="card">
@@ -47,5 +32,3 @@ function App() {
 		</>
 	);
 }
-
-export default App;
