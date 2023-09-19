@@ -16,6 +16,7 @@
     "react-dnd-multi-backend": "^8.0.2",
     "react-dnd-touch-backend": "^16.0.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.46.1",
     "react-router-dom": "^6.16.0",
     "sass": "^1.67.0"
   },

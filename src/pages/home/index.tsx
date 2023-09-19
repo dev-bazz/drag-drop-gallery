@@ -1,34 +1,46 @@
-import { useState } from "react";
-import "./App.css";
+import style from "./style.module.scss";
 import { useGlobalContext } from "../../context";
 
 export function App() {
-	const [count, setCount] = useState(0);
 	const { gold } = useGlobalContext();
 	console.log("Global Context: ", gold);
-
+	const getItem = () => {
+		console.log("Clicked");
+	};
 	return (
 		<>
-			<div>
-				<a
-					href="https://vitejs.dev"
-					target="_blank"></a>
-				<a
-					href="https://react.dev"
-					target="_blank"></a>
+			<h1 className={style.heading}>TOP STAR WARS CHARACTERS</h1>
+			<div className={style.search}>
+				<input type="text" />
+
+				<div className={style.search_filter}>
+					<div>
+						<label htmlFor="all">All</label>
+						<input
+							type="radio"
+							name="force"
+							id="all"
+							onClick={getItem}
+						/>
+					</div>
+					<div>
+						<label htmlFor="light">Light Side</label>
+						<input
+							type="radio"
+							name="force"
+							id="light"
+						/>
+					</div>
+					<div>
+						<label htmlFor="dark">Dark Side</label>
+						<input
+							type="radio"
+							name="force"
+							id="dark"
+						/>
+					</div>
+				</div>
 			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
 		</>
 	);
 }

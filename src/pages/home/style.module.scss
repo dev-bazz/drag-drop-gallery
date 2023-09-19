@@ -1,0 +1,22 @@
+@use "../../sass/index.scss" as *;
+.container {
+	@include container;
+}
+
+.heading {
+	@include container;
+	text-align: center;
+	color: map-get($colors, greyHeading);
+	padding-top: px-to-rem(90px);
+}
+
+.search {
+	display: flex;
+	@include container;
+	justify-content: space-between;
+	margin-top: px-to-rem(40px);
+
+	&_filter {
+		display: flex;
+	}
+}
