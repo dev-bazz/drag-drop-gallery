@@ -10,7 +10,7 @@ $mobile: 408px;
 	min-height: 100vh;
 	min-height: 100dvh;
 	@include custom-media-query("mobile", map-get($breakpoints, md)) {
-		grid-template-rows: px-to-rem(180);
+		grid-template-rows: px-to-rem(180px);
 		grid-template-columns: 1fr;
 		grid-template-areas: "side" "main";
 	}
