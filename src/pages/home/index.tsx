@@ -1,45 +1,101 @@
 import style from "./style.module.scss";
-import { useGlobalContext } from "../../context";
+import { ChangeEvent, useState } from "react";
+import characterData from "../../data";
+import { Card } from "../../components";
+import {
+	DndContext,
+	DragEndEvent,
+	MouseSensor,
+	TouchSensor,
+	closestCenter,
+	useSensor,
+	useSensors,
+} from "@dnd-kit/core";
+import {
+	SortableContext,
+	arrayMove,
+	rectSortingStrategy,
+} from "@dnd-kit/sortable";
 
 export function App() {
-	const { gold } = useGlobalContext();
-	console.log("Global Context: ", gold);
-	const getItem = () => {
-		console.log("Clicked");
-	};
+	const [searchString, setSearchString] = useState<string>("");
+	const [character] = useState<typeof characterData>(characterData);
+	const [filteredData, setFilteredData] = useState(character);
+
+	const sensors = useSensors(
+		useSensor(MouseSensor),
+		useSensor(TouchSensor)
+	);
+
+	function handleDragEnd(event: DragEndEvent) {
+		const { active, over } = event;
+		if (active?.id === over?.id) return;
+		setFilteredData(() => {
+			const oldIndex = filteredData.findIndex(
+				(user) => user.id === active?.id
+			);
+			const newIndex = filteredData.findIndex((user) => user.id === over?.id);
+
+			return arrayMove(filteredData, oldIndex, newIndex);
+		});
+	}
+
+	function handleSearch(e: ChangeEvent) {
+		// Store search String
+		const target = e.target as HTMLInputElement;
+		const searchValue = target?.value;
+		setSearchString(searchValue);
+
+		// filter result
+		const handleFiltter = character.filter((item) => {
+			const byTag = item.tag
+				.toLowerCase()
+				.includes(searchValue.toLowerCase());
+			const byName = item.name
+				.toLowerCase()
+				.includes(searchValue.toLowerCase());
+			const byId = item.id.toString().includes(searchValue);
+			return byId || byName || byTag;
+		});
+
+		setFilteredData(handleFiltter);
+	}
 	return (
 		<>
 			<h1 className={style.heading}>TOP STAR WARS CHARACTERS</h1>
 			<div className={style.search}>
-				<input type="text" />
-
-				<div className={style.search_filter}>
-					<div>
-						<label htmlFor="all">All</label>
-						<input
-							type="radio"
-							name="force"
-							id="all"
-							onClick={getItem}
-						/>
-					</div>
-					<div>
-						<label htmlFor="light">Light Side</label>
-						<input
-							type="radio"
-							name="force"
-							id="light"
-						/>
-					</div>
-					<div>
-						<label htmlFor="dark">Dark Side</label>
-						<input
-							type="radio"
-							name="force"
-							id="dark"
-						/>
-					</div>
-				</div>
+				<input
+					value={searchString}
+					className={style.searchInput}
+					type="text"
+					placeholder="Search by Name , Tag or ID"
+					onChange={handleSearch}
+				/>
+			</div>
+			<div className={style.grid}>
+				<DndContext
+					sensors={sensors}
+					collisionDetection={closestCenter}
+					onDragEnd={handleDragEnd}>
+					<SortableContext
+						items={filteredData}
+						strategy={rectSortingStrategy}>
+						{filteredData.length > 0 ? (
+							filteredData.map((character) => (
+								<Card
+									key={character.id}
+									{...character}
+								/>
+							))
+						) : (
+							<div className={style.empty}>
+								<h4>No Result</h4>
+								<p>🤔Hmm... Can't seem to find this </p>
+								<p>Try to Search by Name:Mace, Tage: Light Side or ItemId: 4</p>
+							</div>
+						)}
+					</SortableContext>
+				</DndContext>
 			</div>
 		</>
 	);

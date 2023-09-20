@@ -3,6 +3,17 @@
 	@include container;
 }
 
+.grid {
+	@include container;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(388px, auto));
+	gap: px-to-rem(12px);
+	margin-top: px-to-rem(76px);
+	padding-inline: px-to-rem(16px);
+	justify-content: center;
+	padding-bottom: px-to-rem(42px);
+}
+
 .heading {
 	@include container;
 	text-align: center;
@@ -13,10 +24,34 @@
 .search {
 	display: flex;
 	@include container;
-	justify-content: space-between;
+	justify-content: center;
 	margin-top: px-to-rem(40px);
+	align-items: center;
+	padding-inline: px-to-rem(16px);
 
 	&_filter {
 		display: flex;
+	}
+}
+
+.searchInput {
+	flex-basis: px-to-rem(560px);
+	padding: px-to-rem(12px) px-to-rem(16px);
+	border-radius: px-to-rem(8px);
+	border: 2px solid #d9d9d9;
+	background: #fff;
+}
+
+.empty {
+	text-align: center;
+	h4 {
+		font-size: px-to-rem(32px);
+	}
+
+	p {
+		color: map-get($colors, greyHeading);
+		&:nth-of-type(1) {
+			margin-top: px-to-rem(20px);
+		}
 	}
 }
