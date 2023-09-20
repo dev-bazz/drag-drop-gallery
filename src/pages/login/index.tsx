@@ -11,12 +11,9 @@ export function LoginPage() {
 	const getUser = async (email: string, password: string) => {
 		try {
 			const user = await signInWithEmailAndPassword(auth, email, password);
-			console.log("user: ", user);
-			localStorage.setItem(
-				"user",
-				JSON.stringify(user?._tokenResponse.idToken)
-			);
-			console.log(localStorage.getItem("user"));
+			const token = await user.user.getIdToken();
+			console.log("user: ", token);
+			localStorage.setItem("user", JSON.stringify(token));
 			navigate("/");
 		} catch (error) {
 			setInvalid("Invalid email or password");

@@ -10,22 +10,32 @@ import {
 	redirect,
 } from "react-router-dom";
 
+const protectedRoute = async (params: string) => {
+	const login = localStorage.getItem("user");
+	console.log("loader");
+	if (!login) {
+		throw redirect(params);
+	}
+	return null;
+};
+
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
+		loader: async () => protectedRoute("/login"),
+	},
+	{
+		path: "login",
+		element: <LoginPage />,
 		loader: async () => {
 			const login = localStorage.getItem("user");
 			console.log("loader");
-			if (!login) {
-				throw redirect("/login");
+			if (login) {
+				throw redirect("/");
 			}
 			return null;
 		},
-	},
-	{
-		path: "login/",
-		element: <LoginPage />,
 	},
 ]);
 
