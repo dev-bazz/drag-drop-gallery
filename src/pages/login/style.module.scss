@@ -1,0 +1,76 @@
+@use "../../sass/index.scss" as *;
+
+$mobile: 408px;
+.container {
+	display: grid;
+	grid-template-columns:
+		minmax(calc(px-to-rem(100px) - 10vw), px-to-rem(450px))
+		minmax(400px, 1fr);
+	grid-template-areas: "side main";
+	min-height: 100vh;
+	min-height: 100dvh;
+	@include custom-media-query("mobile", $mobile) {
+		grid-template-rows: auto;
+		grid-template-columns: 1fr;
+		grid-template-areas: "side" "main";
+	}
+}
+
+.side {
+	grid-area: side;
+	background-color: map-get($colors, primary);
+	object-fit: contain;
+	background-image: url(./assets/login-img.webp);
+	@include custom-media-query("mobile", $mobile) {
+		background-image: url(./assets/mobile.webp);
+		background-size: cover;
+		background-position: center;
+		height: 150px;
+	}
+
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.main {
+	grid-area: main;
+	display: grid;
+	place-items: center;
+	padding-inline: px-to-rem(16px);
+	.text {
+		margin-top: px-to-rem(12px);
+	}
+	.holders {
+		width: 100%;
+		display: flex;
+	}
+	input {
+		border-radius: 10px;
+		background: #f5f5f7;
+		border: none;
+		padding: px-to-rem(20px) px-to-rem(16px);
+		width: 100%;
+	}
+	.inputs {
+		margin-top: px-to-rem(28px);
+
+		display: flex;
+		flex-direction: column;
+		gap: px-to-rem(24px);
+	}
+	button {
+		display: inline-block;
+		margin-top: px-to-rem(28px);
+		border-radius: 8px;
+		background: #007dfa;
+		border: none;
+		padding: px-to-rem(18px);
+		width: px-to-rem(138px);
+		cursor: pointer;
+		font-weight: 600;
+		color: white;
+	}
+	.btn {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
