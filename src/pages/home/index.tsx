@@ -22,10 +22,15 @@ export function App() {
 	const [character] = useState<typeof characterData>(characterData);
 	const [filteredData, setFilteredData] = useState(character);
 
-	const sensors = useSensors(
-		useSensor(MouseSensor),
-		useSensor(TouchSensor)
-	);
+	const mouse = useSensor(MouseSensor),
+		touch = useSensor(TouchSensor, {
+			activationConstraint: {
+				delay: 250,
+				tolerance: 5,
+			},
+		});
+
+	const sensors = useSensors(mouse, touch);
 
 	function handleDragEnd(event: DragEndEvent) {
 		const { active, over } = event;
