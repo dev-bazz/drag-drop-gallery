@@ -1,8 +1,18 @@
 import React from "react";
 import style from "./style.module.scss";
 import { useForm } from "react-hook-form";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../auth";
 
 export function LoginPage() {
+	const getUser = async (email: string, password: string) => {
+		try {
+			const user = await signInWithEmailAndPassword(auth, email, password);
+			console.log("user: ", user);
+		} catch {
+			console.log("error");
+		}
+	};
 	const {
 		register,
 		handleSubmit,
@@ -18,6 +28,7 @@ export function LoginPage() {
 			<div className={style.main}>
 				<form
 					onSubmit={handleSubmit((data) => {
+						getUser(data.email, data.password);
 						console.log(data, errors);
 					})}>
 					<h1>Login</h1>
