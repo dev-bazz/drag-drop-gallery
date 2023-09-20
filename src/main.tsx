@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { GlobalContext } from "./context";
 import { App } from "./pages";
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
 	{
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<GlobalContext>
 		<React.StrictMode>
-			<App />
+			<RouterProvider router={router} />
 		</React.StrictMode>
 	</GlobalContext>
 );
