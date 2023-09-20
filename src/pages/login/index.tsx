@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.scss";
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../auth";
+import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
+	const [invalid, setInvalid] = useState("");
+	const navigate = useNavigate();
 	const getUser = async (email: string, password: string) => {
 		try {
 			const user = await signInWithEmailAndPassword(auth, email, password);
 			console.log("user: ", user);
-		} catch {
+			localStorage.setItem(
+				"user",
+				JSON.stringify(user?._tokenResponse.idToken)
+			);
+			console.log(localStorage.getItem("user"));
+			navigate("/");
+		} catch (error) {
+			setInvalid("Invalid email or password");
 			console.log("error");
 		}
 	};
@@ -32,6 +42,7 @@ export function LoginPage() {
 						console.log(data, errors);
 					})}>
 					<h1>Login</h1>
+					<p>{invalid}</p>
 					<p className={style.text}>
 						Only student of the force can have access
 					</p>
