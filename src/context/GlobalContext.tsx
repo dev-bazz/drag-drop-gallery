@@ -1,20 +1,20 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useState } from "react";
 import { GlobalContextType } from "./context";
 
-const AppContext = createContext<GlobalContextType>({});
-
-export const useGlobalContext = () => useContext(AppContext);
+export const AppContext = createContext<GlobalContextType>({});
 
 export function GlobalContext({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const gold = "007";
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<AppContext.Provider
 			value={{
-				gold,
+				loading,
+				setLoading,
 			}}>
 			{children}
 		</AppContext.Provider>

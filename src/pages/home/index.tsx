@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import characterData from "../../data";
-import { Card } from "../../components";
+import { Card, Spinner } from "../../components";
 import {
 	DndContext,
 	DragEndEvent,
@@ -16,8 +16,11 @@ import {
 	arrayMove,
 	rectSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useContextStore } from "../../context";
 
 export function App() {
+	const { loading, setLoading } = useContextStore();
+
 	const [searchString, setSearchString] = useState<string>("");
 	const [character] = useState<typeof characterData>(characterData);
 	const [filteredData, setFilteredData] = useState(character);
@@ -31,6 +34,13 @@ export function App() {
 		});
 
 	const sensors = useSensors(mouse, touch);
+	useEffect(() => {
+		setLoading?.(false);
+	}, [setLoading]);
+
+	if (loading) {
+		return <Spinner loader={`🔐Getting Images 🔐`} />;
+	}
 
 	function handleDragEnd(event: DragEndEvent) {
 		const { active, over } = event;
@@ -65,6 +75,7 @@ export function App() {
 
 		setFilteredData(handleFiltter);
 	}
+	useEffect(() => {});
 	return (
 		<>
 			<h1 className={style.heading}>TOP STAR WARS CHARACTERS</h1>

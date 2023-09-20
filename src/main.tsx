@@ -12,7 +12,7 @@ import {
 
 const protectedRoute = async (params: string) => {
 	const login = localStorage.getItem("user");
-	console.log("loader");
+
 	if (!login) {
 		throw redirect(params);
 	}
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 		element: <LoginPage />,
 		loader: async () => {
 			const login = localStorage.getItem("user");
-			console.log("loader");
+
 			if (login) {
 				throw redirect("/");
 			}

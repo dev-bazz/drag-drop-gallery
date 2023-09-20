@@ -4,20 +4,33 @@ import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../auth";
 import { useNavigate } from "react-router-dom";
+import { useContextStore } from "../../context";
+import { Spinner } from "../../components";
 
 export function LoginPage() {
+	const { loading, setLoading } = useContextStore();
+
 	const [invalid, setInvalid] = useState("");
 	const navigate = useNavigate();
 	const getUser = async (email: string, password: string) => {
 		try {
+			if (setLoading) {
+				setLoading(true);
+			}
 			const user = await signInWithEmailAndPassword(auth, email, password);
 			const token = await user.user.getIdToken();
-			console.log("user: ", token);
+
 			localStorage.setItem("user", JSON.stringify(token));
+			if (setLoading) {
+				setLoading(false);
+			}
 			navigate("/");
 		} catch (error) {
 			setInvalid("Invalid email or password");
-			console.log("error");
+
+			if (setLoading) {
+				setLoading(false);
+			}
 		}
 	};
 	const {
@@ -29,6 +42,10 @@ export function LoginPage() {
 	const ErroHandler = ({ children }: { children: React.ReactNode }) => (
 		<div className={style.holders}>{children}</div>
 	);
+	if (loading) {
+		return <Spinner loader={`🔐 Checking Your Credentials... 🔐`} />;
+	}
+
 	return (
 		<div className={style.container}>
 			<div className={style.side}></div>
@@ -36,10 +53,9 @@ export function LoginPage() {
 				<form
 					onSubmit={handleSubmit((data) => {
 						getUser(data.email, data.password);
-						console.log(data, errors);
 					})}>
 					<h1>Login</h1>
-					<p>{invalid}</p>
+					<p className={style.errorMsg}>{invalid}</p>
 					<p className={style.text}>
 						Only student of the force can have access
 					</p>

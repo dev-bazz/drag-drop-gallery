@@ -1,3 +1,4 @@
 export interface GlobalContextType {
-	gold?: string;
+	loading?: boolean;
+	setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 }
