@@ -43,6 +43,15 @@ $mobile: 408px;
 	.holders {
 		width: 100%;
 		display: flex;
+		position: relative;
+		align-items: start;
+		min-height: px-to-rem(90px);
+
+		p {
+			position: absolute;
+			color: red;
+			bottom: 0;
+		}
 	}
 	input {
 		border-radius: 10px;
