@@ -9,7 +9,7 @@ $mobile: 408px;
 	grid-template-areas: "side main";
 	min-height: 100vh;
 	min-height: 100dvh;
-	@include custom-media-query("mobile", $mobile) {
+	@include custom-media-query("mobile", map-get($breakpoints, md)) {
 		grid-template-rows: auto;
 		grid-template-columns: 1fr;
 		grid-template-areas: "side" "main";
@@ -21,7 +21,7 @@ $mobile: 408px;
 	background-color: map-get($colors, primary);
 	object-fit: contain;
 	background-image: url(./assets/login-img.webp);
-	@include custom-media-query("mobile", $mobile) {
+	@include custom-media-query("mobile", map-get($breakpoints, md)) {
 		background-image: url(./assets/mobile.webp);
 		background-size: cover;
 		background-position: center;
