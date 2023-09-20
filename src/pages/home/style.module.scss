@@ -10,6 +10,8 @@
 	gap: px-to-rem(12px);
 	margin-top: px-to-rem(76px);
 	padding-inline: px-to-rem(16px);
+	place-items: center;
+
 	justify-content: center;
 	padding-bottom: px-to-rem(42px);
 }
@@ -19,6 +21,11 @@
 	text-align: center;
 	color: map-get($colors, greyHeading);
 	padding-top: px-to-rem(90px);
+
+	@include custom-media-query("mobile", 408px) {
+		font-size: px-to-rem(24px);
+		padding-top: px-to-rem(50px);
+	}
 }
 
 .search {
@@ -44,6 +51,19 @@
 
 .empty {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	padding-inline: px-to-rem(16px);
+
+	@include custom-media-query("mobile", 408px) {
+		width: px-to-rem(352px);
+		h4 {
+			font-size: px-to-rem(16px);
+		}
+		p {
+			font-size: px-to-rem(12px);
+		}
+	}
 	h4 {
 		font-size: px-to-rem(32px);
 	}

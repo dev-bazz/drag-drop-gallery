@@ -11,6 +11,13 @@
 	aspect-ratio: 1.05/1;
 	cursor: pointer;
 	perspective: 1000px;
+	@include custom-media-query("mobile", 438px) {
+		width: px-to-rem(352px);
+	}
+
+	@include custom-media-query("mobile", 364px) {
+		width: px-to-rem(300px);
+	}
 
 	&:hover .front {
 		transform: rotateY($flip);
