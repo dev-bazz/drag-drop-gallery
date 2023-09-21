@@ -5,8 +5,10 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+const apiKey = import.meta.env.VITE_FIREBASE_PUBLISHABLE_KEY;
+
 const firebaseConfig = {
-	apiKey: "AIzaSyAw09pssPHonia2DjTdaWWucpM__FgtPec",
+	apiKey: apiKey,
 	authDomain: "hng3-6da3e.firebaseapp.com",
 	projectId: "hng3-6da3e",
 	storageBucket: "hng3-6da3e.appspot.com",
