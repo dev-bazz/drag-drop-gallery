@@ -35,7 +35,7 @@
 	margin-top: px-to-rem(40px);
 	align-items: center;
 	padding-inline: px-to-rem(16px);
-
+	gap: px-to-rem(16px);
 	&_filter {
 		display: flex;
 	}
@@ -74,4 +74,11 @@
 			margin-top: px-to-rem(20px);
 		}
 	}
+}
+
+.logout {
+	cursor: pointer;
+	padding: px-to-rem(12px) px-to-rem(16px);
+	border-radius: 14px;
+	border: none;
 }

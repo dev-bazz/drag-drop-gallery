@@ -78,6 +78,11 @@ export function App() {
 		setFilteredData(handleFiltter);
 	}
 
+	const logOut = () => {
+		localStorage.removeItem("user");
+		window.location.reload();
+	};
+
 	return (
 		<>
 			<h1 className={style.heading}>TOP STAR WARS CHARACTERS</h1>
@@ -89,6 +94,12 @@ export function App() {
 					placeholder="Search by Name , Tag or ID"
 					onChange={handleSearch}
 				/>
+
+				<button
+					onClick={logOut}
+					className={style.logout}>
+					Logout
+				</button>
 			</div>
 			<div className={style.grid}>
 				<DndContext
