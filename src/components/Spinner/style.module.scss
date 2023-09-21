@@ -4,4 +4,22 @@
 	min-height: 100vh;
 	display: grid;
 	place-items: center;
+	padding-inline: px-to-rem(16px);
+	.spinner {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		max-width: px-to-rem(200px);
+	}
+	h1 {
+		font-size: px-to-rem(16px);
+		text-align: center;
+	}
+
+	@include custom-media-query("mobile", map-get($breakpoints, md)) {
+		h1 {
+			font-size: px-to-rem(14px);
+			text-align: center;
+		}
+	}
 }

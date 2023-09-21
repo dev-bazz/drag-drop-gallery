@@ -20,7 +20,9 @@ import { useContextStore } from "../../context";
 
 export function App() {
 	const { loading, setLoading } = useContextStore();
-
+	useEffect(() => {
+		setLoading?.(false);
+	});
 	const [searchString, setSearchString] = useState<string>("");
 	const [character] = useState<typeof characterData>(characterData);
 	const [filteredData, setFilteredData] = useState(character);
@@ -75,7 +77,7 @@ export function App() {
 
 		setFilteredData(handleFiltter);
 	}
-	useEffect(() => {});
+
 	return (
 		<>
 			<h1 className={style.heading}>TOP STAR WARS CHARACTERS</h1>
