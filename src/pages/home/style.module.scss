@@ -31,11 +31,12 @@
 .search {
 	display: flex;
 	@include container;
-	justify-content: center;
+	justify-content: space-between;
 	margin-top: px-to-rem(40px);
 	align-items: center;
 	padding-inline: px-to-rem(16px);
 	gap: px-to-rem(16px);
+
 	@include custom-media-query("mobile", map-get($breakpoints, md)) {
 		flex-wrap: wrap;
 	}
